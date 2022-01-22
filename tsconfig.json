@@ -17,7 +17,6 @@
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "isCustomElement": ["b-col", "b-button"],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
