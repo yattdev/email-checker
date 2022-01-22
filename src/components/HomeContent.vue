@@ -1,41 +1,53 @@
 <template>
   <center class="hello my-5">
     <h1>{{ msg }}</h1>
-    <div id="response" :class="is_valid ? 'text-success my-3': 'text-danger my-3'">
-        {{is_valid=='true' ? 'VALID': is_valid=='' ? '': 'NO VALID'}}
+    <div
+      id="response"
+      :class="is_valid ? 'text-success my-3' : 'text-danger my-3'"
+    >
+      {{ is_valid == "true" ? "VALID" : is_valid == "" ? "" : "NO VALID" }}
     </div>
     <form class="w-50" action="" @submit.prevent="check_email" method="post">
-        <div class="my-3 p-3" style="background-color: #eee">
-          <input required v-model="email" placeholder="email" type="email" id="typeEmail" name="email" class="form-control" />
-        </div>
-        <button type="submit" class="btn btn-primary mx-auto text-nowrap btn-lg">Verify</button>
+      <div class="my-3 p-3" style="background-color: #eee">
+        <input
+          required
+          v-model="email"
+          placeholder="email"
+          type="email"
+          id="typeEmail"
+          name="email"
+          class="form-control"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary mx-auto text-nowrap btn-lg">
+        Verify
+      </button>
     </form>
   </center>
 </template>
 
 <script>
-import Vue from "vue"
 import { defineComponent } from "vue";
 
 export default defineComponent({
-name: 'Home',
-data() {
+  name: 'Home',
+  data() {
     return {
-        email: '',
-        is_valid: '',
+      email: "",
+      is_valid: "",
     }
-},
-props: {
+  },
+  props: {
     msg: String
-},
-methods: {
+  },
+  methods: {
     check_email: () => {
-        if(this.email === ''){
-            this.errors.push('The email is missing')
-        }
-        console.log('submit done!')
+      if (this.email === "") {
+        this.errors.push("The email is missing");
+      }
+      console.log("submit done!");
     },
-}
+  },
 })
 </script>
 
