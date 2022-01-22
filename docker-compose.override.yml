@@ -6,7 +6,7 @@ services:
         context: .
         dockerfile: ./Dockerfile
     restart: always
-    command: serve -s ./ -l 5000
+    command: serve -s ./dist -l 5000
     expose:
         - 5000
     env_file:
