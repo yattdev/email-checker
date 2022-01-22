@@ -12,7 +12,7 @@ COPY . .
 FROM develop-stage as build-stage
 RUN npm run build
 
-### 2 STAGE ###
+### 3 STAGE ###
 # production stage
 FROM node:alpine as production-stage
 
