@@ -14,7 +14,8 @@ import "mdb-vue-ui-kit/css/mdb.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
-axios.defaults.baseURL = "https://album-pochette.herokuapp.com/api/v1";
+axios.defaults.baseURL =
+  "https://backend.email-checker.remote.yatt.tech/api/v1";
 
 createApp(App)
   .use(store)
