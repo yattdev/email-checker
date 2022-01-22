@@ -3,9 +3,9 @@
     <h1 class="mt-5">{{ msg }}</h1>
     <div
       id="response"
-      :class="is_valid ? 'text-success my-3' : 'text-danger my-3'"
+      :class="is_valid ? 'text-success my-3 fs-3' : 'text-danger my-3 fs-3'"
     >
-      {{ is_valid == "true" ? "VALID" : is_valid == "" ? "" : "NO VALID" }}
+      {{ validation === true ? `VALID: ${email_checked}` : validation === false ? `BAD: ${email_checked}` : "" }}
     </div>
     <form class="w-50 mb-4" action="" @submit.prevent="check_email" method="post">
       <div class="my-4 p-3" style="background-color: #ddd">
@@ -33,12 +33,14 @@ import { defineComponent } from "vue";
 import { MDBBtn } from 'mdb-vue-ui-kit';
 import Footer from "./Footer.vue"
 import Table from './Table.vue'
+import axios from "axios";
 
 export default defineComponent({
   name: 'Home',
   data() {
     return {
       email: "",
+      email_checked: "",
       is_valid: "",
       errors: [
       ]
@@ -52,13 +54,37 @@ export default defineComponent({
   props: {
     msg: String
   },
+  computed: {
+    validation(){
+      return this.is_valid
+    }
+  },
   methods: {
-    check_email(){
+    async check_email(){
+      this.errors = []
       if (this.email === "") {
-        this.errors.push("The email is missing");
-      }else{
-        console.log("Hello ! "+this.email);
-        this.is_valid = true
+        this.errors.push('The email is missing')
+        this.is_valid = false
+      }
+
+      if(!this.errors.length){
+        const formData = "email="+this.email
+        console.log(formData);
+        this.$store.commit('setIsLoading', true)
+
+        await axios
+          .post('/', formData)
+          .then((response) => {
+              const data = response.data
+              this.is_valid = data['valid']
+              this.email_checked = data['email_checked']
+              console.log(this.is_valid);
+              this.$store.commit('setIsLoading', false)
+          })
+          .catch((error) => {
+              this.$store.commit('setIsLoading', false)
+              console.log(error)
+          })
       }
     },
   },
