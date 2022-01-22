@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  sanic:
+    build:
+        context: .
+        dockerfile: ./Dockerfile
+    restart: always
+    command: serve -s ./ -l 5000
+    expose:
+        - 5000
+    env_file:
+        - ./.env # content env variable for databases and django
+    volumes:
+      - ./dist:/home/alassane/email_checker
