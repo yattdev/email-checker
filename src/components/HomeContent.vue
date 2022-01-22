@@ -1,6 +1,6 @@
 <template>
   <center class="hello my-5">
-    <h1>{{ msg }}</h1>
+    <h1 class="mt-5">{{ msg }}</h1>
     <div
       id="response"
       :class="is_valid ? 'text-success my-3' : 'text-danger my-3'"
@@ -8,7 +8,7 @@
       {{ is_valid == "true" ? "VALID" : is_valid == "" ? "" : "NO VALID" }}
     </div>
     <form class="w-50" action="" @submit.prevent="check_email" method="post">
-      <div class="my-3 p-3" style="background-color: #eee">
+      <div class="my-3 p-3" style="background-color: #ddd">
         <input
           required
           v-model="email"
@@ -35,17 +35,20 @@ export default defineComponent({
     return {
       email: "",
       is_valid: "",
+      errors: [
+      ]
     }
   },
   props: {
     msg: String
   },
   methods: {
-    check_email: () => {
+    check_email(){
       if (this.email === "") {
         this.errors.push("The email is missing");
+      }else{
+        console.log("Hello ! "+this.email);
       }
-      console.log("submit done!");
     },
   },
 })
