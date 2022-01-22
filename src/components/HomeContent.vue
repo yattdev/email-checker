@@ -23,44 +23,16 @@
         Verify
       </MDBBtn>
     </form>
-    <MDBTable class="w-75 fs-4">
-      <tr class="table-dark">
-        <th class="px-4">FEATURES</th>
-        <th>STATE</th>
-      </tr>
-      <tr class="table-success">
-        <td class="px-4">Syntax checks</td>
-        <td>DONE</td>
-      </tr>
-      <tr class="table-success">
-        <td class="px-4">MX(Mail Exchange records) verification</td>
-        <td>DONE</td>
-      </tr>
-      <tr class="table-success">
-        <td class="px-4">Email Handler verification</td>
-        <td>DONE</td>
-      </tr>
-      <tr class="table-success">
-        <td class="px-4">Caching domain lookups to improve performance</td>
-        <td>DONE</td>
-      </tr>
-      <tr class="table-light">
-        <td class="px-4">Multiples emails verifications(e.g: emails.csv)</td>
-        <td>Comming soon</td>
-      </tr>
-      <tr class="table-success">
-        <td class="px-4">Supports asyncio for concurrency</td>
-        <td>DONE</td>
-      </tr>
-    </MDBTable>
+    <Table />
   </center>
   <Footer />
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import { MDBTable, MDBBtn } from 'mdb-vue-ui-kit';
+import { MDBBtn } from 'mdb-vue-ui-kit';
 import Footer from "./Footer.vue"
+import Table from './Table.vue'
 
 export default defineComponent({
   name: 'Home',
@@ -73,8 +45,8 @@ export default defineComponent({
     }
   },
   components: {
-    MDBTable,
     MDBBtn,
+    Table,
     Footer,
   },
   props: {
