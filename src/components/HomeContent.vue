@@ -7,12 +7,12 @@
     >
       {{ validation === true ? `VALID: ${email_checked}` : validation === false ? `BAD: ${email_checked}` : "" }}
     </div>
-    <form class="w-50 mb-4" action="" @submit.prevent="check_email" method="post">
+    <form class="w-75 mb-4" action="" @submit.prevent="check_email" method="post">
       <div class="my-4 p-3" style="background-color: #ddd">
         <input
           required
           v-model="email"
-          placeholder="email"
+          placeholder="(e.g: john@gmail.com)"
           type="email"
           id="typeEmail"
           name="email"
