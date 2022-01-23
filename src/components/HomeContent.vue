@@ -1,7 +1,8 @@
 <template>
   <center class="hello my-5">
     <h1 class="mt-5">{{ msg }}</h1>
-    <div
+    <Loader v-if="is_loading" />
+    <div v-else
       id="response"
       :class="is_valid ? 'text-success my-3 fs-3' : 'text-danger my-3 fs-3'"
     >
@@ -34,6 +35,7 @@ import { MDBBtn } from 'mdb-vue-ui-kit';
 import Footer from "./Footer.vue"
 import Table from './Table.vue'
 import axios from "axios";
+import Loader from "./loading.vue"
 
 export default defineComponent({
   name: 'Home',
@@ -50,6 +52,7 @@ export default defineComponent({
     MDBBtn,
     Table,
     Footer,
+    Loader,
   },
   props: {
     msg: String
@@ -57,7 +60,10 @@ export default defineComponent({
   computed: {
     validation(){
       return this.is_valid
-    }
+    },
+    is_loading() {
+      return this.$store.state.isLoading
+    },
   },
   methods: {
     async check_email(){
