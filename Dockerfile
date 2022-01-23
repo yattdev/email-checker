@@ -9,15 +9,10 @@ WORKDIR $APP_HOME
 # Add path
 ENV PATH="$APP_HOME/.local/bin:${PATH}"
 
-COPY package*.json ./
+COPY package*.json $APP_HOME/
 RUN npm install
 
 # Copy email_checker, period dot (.) meant current dir
-COPY --chown=alassane:alassane . $APP_HOME
-
-# Switch to root and change ownership of home and app_home
-USER root
-RUN chown -R alassane:alassane $HOME
-RUN chown -R alassane:alassane $APP_HOME
+COPY . $APP_HOME
 
 RUN npm run build
