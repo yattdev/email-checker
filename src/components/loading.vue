@@ -1,11 +1,13 @@
 <template>
-  <Spinner class="loader" :name="loading ? 'circle' : ''" color="#32B5B6" />
+  <beat-loader :loading="loading" color="#1667D7"></beat-loader>
 </template>
 
 <script>
-import Vue from 'vue';
-import Spinner from 'vue-spinkit';
-export default Vue.component('Loader', {
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: 'Loader',
   data() {
     return {};
   },
@@ -15,7 +17,7 @@ export default Vue.component('Loader', {
     },
   },
   components: {
-    Spinner: Spinner
+    "beat-loader": PulseLoader,
   },
 })
 </script>
